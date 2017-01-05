@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Up and down a hill",
+    "activities": [
+      1,
+      2
+    ]
+  },
+  {
+    "id": 2,
+    "name": "A lone excursion",
+    "activities": [
+      3
+    ]
+  }
+]
