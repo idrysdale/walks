@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %meta{ content: "IE=edge", "http equiv": "X-UA-Compatible" }
+    %meta{ charset: "utf-8" }
+    %meta{ content: "width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no",  name: "viewport" }
+    %title= current_page.data.name || "Walks in England"
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Oswald|Shadows+Into+Light'
+    = stylesheet_link_tag :site
+    = yield_content :head
+  %body
+    %img.boundary{ src: '/images/national-park-boundary-top.svg', width: '100%' }
+    = yield
+    %img.boundary.bottom{ src: '/images/national-park-boundary-bottom.svg', width: '100%' }

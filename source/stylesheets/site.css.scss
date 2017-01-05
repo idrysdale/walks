@@ -1,0 +1,132 @@
+@import "normalize";
+
+$base-font-size: 1.25rem;
+$base-line-height: 1.25 * $base-font-size;
+
+$os-water: #08B5E4;
+$os-woodland: #D8E9C9;
+$os-sand: #FFFDE6;
+$os-orange: #E7792B;
+
+@import "baseline-functions";
+@import "baseline-grid";
+
+body {
+  padding: $base-line-height * 0.5;
+  font-family: "Gill Sans", sans-serif;
+  font-weight: 400;
+  color: #0f0f0f;
+  background-color: white;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+h1 {
+  @include type-setting(2);
+  font-weight: 400;
+  letter-spacing: 3px;
+  margin-top: 0;
+  margin-bottom: $base-line-height;
+  text-align: center;
+}
+
+h2 {
+  @include type-setting(1);
+  font-weight: 400;
+  margin: 0 0 $base-line-height 0;
+  color: $os-water;
+  text-align: center;
+  a {
+    color: $os-water;
+  }
+}
+
+p {
+  @include type-setting(0);
+  margin: 0 0 $base-line-height 0;
+}
+
+strong {
+  font-weight: 600;
+}
+
+a {
+  color: $os-water;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  position: relative;
+}
+
+img.icon {
+  height: $base-line-height;
+  margin: 0;
+  padding: 0;
+  display: block;
+  margin: 0 auto $base-line-height auto;
+}
+
+img.icon.boulders {
+  height: $base-line-height * 2;
+  margin: 0;
+  padding: 0;
+  display: block;
+  margin: 0 auto $base-line-height auto;
+}
+
+img.top {
+  margin-top: $base-line-height;
+  margin-bottom: 0;
+}
+
+img.boundary {
+  margin: 0;
+  padding: 0;
+  display: block;
+  height: $base-line-height;
+  margin-bottom: $base-line-height;
+}
+
+img.bottom {
+  margin-bottom: 0.5 * $base-line-height;
+}
+
+img.contour {
+  width: 100%;
+  margin-bottom: $base-line-height;
+  display: block;
+  height: $base-line-height * 2;
+  object-fit: cover;
+}
+
+.intro {
+  padding: $base-line-height * 0.5;
+  background: $os-sand;
+  p {
+    padding: 0;
+    margin: 0;
+  }
+  margin-bottom: $base-line-height;
+}
+
+.footer {
+  color: $os-orange;
+  text-align: center;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.horizontal-thumb {
+  display: block;
+  width: 100%;
+  height: $base-line-height * 8;
+  object-fit: cover;
+  margin-bottom: $base-line-height;
+}
+
+#map {
+  width: 100%;
+  height: $base-line-height * 14;
+  margin-bottom: $base-line-height * 0.5;
+}

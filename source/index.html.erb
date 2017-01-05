@@ -1,0 +1,28 @@
+<h1>Notes on 2016</h1>
+<img class='icon' src='images/cliff.svg' />
+
+<p>
+  In late June Bea and I moved to Sheffield.
+</p>
+
+<p>
+  Since then we've climbed up
+  <%= hills_climbed_in_the_peaks.map { |hill|
+    "<a href='#{hill.local_url}'>#{hill.name}</a>"
+  }.to_sentence %>. We've seen rain, sunshine, beautiful
+  inversions and snow. We're starting to find our way
+  around the valleys and Kinder. It's stunning. I can't
+  wait for more of this in 2017.
+</p>
+
+<p>
+  We also visited the Lake District, once with the Sydney
+  Road crew, and once for a long weekend in December
+  celebrating Bea's 31st. It seemed only right to continue
+  the climbing. We managed
+  <%= wainwrights_climbed_in_the_lakes.map { |hill|
+    "<a href='#{hill.local_url}'>#{hill.name}</a>"
+  }.to_sentence %>.
+</p>
+
+<img class='icon boulders' src='images/boulders.svg' />

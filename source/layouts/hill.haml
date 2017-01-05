@@ -1,0 +1,33 @@
+- content_for :head do
+  = stylesheet_link_tag :leaflet
+  = javascript_include_tag :leaflet
+  = javascript_include_tag 'jquery-3.1.1.min'
+  = javascript_include_tag 'underscore-min'
+  = javascript_include_tag :map
+  = javascript_include_tag :route
+  :javascript
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var mapManager = new window.MapManager("map");
+      mapManager.bootstrap();
+      mapManager.centreOnSummit(#{current_page.data.summit});
+
+      var activityURLs =
+        #{ activities_up(
+          current_page.data.hill_id
+        ).map { |a| a.id } };
+
+      for (i = 0; i < activityURLs.length; i++) {
+        walkURL = "/activities/" + activityURLs[i] + ".json";
+        walk = new window.Route(walkURL);
+        mapManager.addRoute(walk);
+      }
+    });
+
+= wrap_layout :layout do
+  #map
+  %h1= current_page.data.name
+  %p
+    We've climbed #{current_page.data.name}
+    #{activities_up(current_page.data.hill_id).size.ordanance},
+    on
+    = friendly_list_of_activitities_dates_up(current_page.data.hill_id) + "."

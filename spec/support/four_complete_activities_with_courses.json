@@ -1,0 +1,22 @@
+[
+  {
+    "id":1,
+    "name":"Morning Ride",
+    "start_date":"2016-10-11T05:52:46Z"
+  },
+  {
+    "id":2,
+    "name":"Afternoon Ride",
+    "start_date":"2016-10-11T05:52:46Z"
+  },
+  {
+    "id":3,
+    "name":"Morning Ride",
+    "start_date":"2016-10-11T05:52:46Z"
+  },
+  {
+    "id":4,
+    "name":"Afternoon Ride",
+    "start_date":"2016-10-11T05:52:46Z"
+  }
+]
