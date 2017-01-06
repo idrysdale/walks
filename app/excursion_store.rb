@@ -17,4 +17,10 @@ class ExcursionStore
       )
     }
   end
+
+  def get(id)
+    get_all.select { |excursion|
+      excursion.id == id
+    }.first
+  end
 end

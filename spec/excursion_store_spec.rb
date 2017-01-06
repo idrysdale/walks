@@ -83,6 +83,20 @@ RSpec.describe ExcursionStore do
     end
   end
 
+  describe 'getting a single excusrion' do
+    before do
+      @excursion = excursion_store.get(1)
+    end
+
+    it 'retrieves a single excursion' do
+      expect(@excursion).to be_an(Excursion)
+    end
+
+    it 'retrieves the right number of activities for the excursion' do
+      expect(@excursion.activities.count).to be 2
+    end
+  end
+
   after do
     connection.close
   end
