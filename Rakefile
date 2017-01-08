@@ -138,6 +138,13 @@ namespace :site do
       end
     end
 
+    Dir.chdir(File.join(File.dirname(__FILE__), 'source', 'excursions'))
+
+    Dir.glob('*.json').each do |filename|
+      basename = File.basename(filename, '.json')
+      `ogr2ogr -f GeoJSON simple-#{basename}.json #{basename}.json -simplify 0.0001`
+    end
+
   end
 end
 
