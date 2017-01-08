@@ -107,7 +107,7 @@ namespace :site do
     end
   end
 
-  task :generate_excursion_activity_pages do
+  task :generate_excursion_activity_json_files do
     require './app/app'
     activity_store = ActivityStore.new('peak-hills')
     excursion_store = ExcursionStore.new('data/excursions.json', activity_store)

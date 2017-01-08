@@ -47,7 +47,7 @@ Next, you should create excursions. These are simply a way of grouping activitie
 ]
 ```
 
-### 8. Generate the HTML pages for the website
+### 8. Generate the HTML pages and JSON files for the website
 
 Finally we're in a position to create the HTML interface to the site. You do this by running the following:
 
@@ -55,7 +55,7 @@ Finally we're in a position to create the HTML interface to the site. You do thi
 rake site:generate_hill_html_files
 rake site:generate_activity_pages
 rake site:generate_excursion_html_files
-rake site:generate_excursion_activity_pages
+rake site:generate_excursion_activity_json_files
 ```
 
 ### 9. Deploy to the Pi
