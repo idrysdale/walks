@@ -1,25 +1,23 @@
 - content_for :head do
   = stylesheet_link_tag :leaflet
   = javascript_include_tag :leaflet
-  = javascript_include_tag 'jquery-3.1.1.min'
-  = javascript_include_tag 'underscore-min'
-  = javascript_include_tag :map
-  = javascript_include_tag :route
+  = javascript_include_tag 'leaflet.ajax'
+  = javascript_include_tag 'map'
+  = javascript_include_tag 'line_options'
+  = javascript_include_tag 'clone_layer'
   :javascript
     document.addEventListener("DOMContentLoaded", function(event) {
-
       var mapManager = new window.MapManager("map");
       mapManager.bootstrap();
 
-      var activityURLs = #{ activities_for(excursion_id:
-          current_page.data.excursion_id
-        ).map { |a| a.id } };
+      excursionURL = "/excursions/#{ current_page.data.excursion_id }.json";
+      var excursion = new L.GeoJSON.AJAX(excursionURL, { style: line_options() });
 
-      for (i = 0; i < activityURLs.length; i++) {
-        walkURL = "/activities/" + activityURLs[i] + ".json";
-        walk = new window.Route(walkURL);
-        mapManager.addRoute(walk, true);
-      }
+      excursion.on('data:loaded', function() {
+        mapManager.map.fitBounds(excursion.getBounds());
+        cloneAndStrokeLayer(excursion, mapManager.map);
+        excursion.addTo(mapManager.map).bringToFront();
+      }.bind(this));
     });
 
 = wrap_layout :layout do

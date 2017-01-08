@@ -1,15 +1,15 @@
 - content_for :head do
   = stylesheet_link_tag :leaflet
   = javascript_include_tag :leaflet
-  = javascript_include_tag 'jquery-3.1.1.min'
-  = javascript_include_tag 'underscore-min'
-  = javascript_include_tag :map
-  = javascript_include_tag :route
+  = javascript_include_tag 'leaflet.ajax'
+  = javascript_include_tag 'map'
+  = javascript_include_tag 'line_options'
   :javascript
     document.addEventListener("DOMContentLoaded", function(event) {
       var mapManager = new window.MapManager("map");
       mapManager.bootstrap();
-      mapManager.centreOnSummit(#{current_page.data.summit});
+      var summit = #{current_page.data.summit};
+      mapManager.map.setView(new L.LatLng(summit[1], summit[0]), 14);
 
       var activityURLs =
         #{ activities_up(
@@ -18,8 +18,8 @@
 
       for (i = 0; i < activityURLs.length; i++) {
         walkURL = "/activities/" + activityURLs[i] + ".json";
-        walk = new window.Route(walkURL);
-        mapManager.addRoute(walk);
+        var walk = new L.GeoJSON.AJAX(walkURL, { style: line_options() });
+        walk.addTo(mapManager.map);
       }
     });
 
