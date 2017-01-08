@@ -33,6 +33,11 @@ helpers do
     ActivitiesHillsStore.new('peak-hills').get_activities_that_climbed(hill_id)
   end
 
+  def activities_for(excursion_id:)
+    activity_store = ActivityStore.new('peak-hills')
+    ExcursionStore.new('data/excursions.json', activity_store).get(excursion_id).activities
+  end
+
   def friendly_list_of_activitities_dates_up(hill_id)
     activities_hill_store = ActivitiesHillsStore.new('peak-hills')
     activities = activities_hill_store.get_activities_that_climbed(hill_id)

@@ -28,16 +28,37 @@ Run `rake strava:download_activities`. This pulls all of the activity data for t
 
 Run `rake geo:calculate_intersections`. This cycles through the **activities** in the database, looking firstly if they appear in the Peak District or the Lake District, and if they do, if they intersect the summit any of the **hills**.
 
-### 7. Generate the HTML pages for the website
+### 7. Create excursions as necessary
+
+Next, you should create excursions. These are simply a way of grouping activities together, for example the three days spent cycling The Way of The Roses. They are stored as a file on disk, for ease of creation (rather than a database table). `exursions.json` takes the format:
+
+```
+[
+  {
+    "id": 1,
+    "name": "The Way of The Roses",
+    "activities": [
+      691164953,
+      692571453,
+      693200525
+    ]
+  },
+  ...
+]
+```
+
+### 8. Generate the HTML pages and JSON files for the website
 
 Finally we're in a position to create the HTML interface to the site. You do this by running the following:
 
 ```
 rake site:generate_hill_html_files
 rake site:generate_activity_pages
+rake site:generate_excursion_html_files
+rake site:generate_excursion_activity_json_files
 ```
 
-### 8. Deploy to the Pi
+### 9. Deploy to the Pi
 
 ```
 make install
@@ -46,4 +67,3 @@ make install
 ## To-do
 
 - Add a way to write up activity descriptions such that generating the activity pages doesn't trash the content.
-- Add a way to view multiple activities together (an excursion?). I want to show things like the Rapha Festive 500, and The Way of The Roses.

@@ -95,6 +95,57 @@ namespace :site do
       ActivityPage.new('source/activities').generate(activity)
     end
   end
+
+  desc 'Generate the excursion HTML files'
+  task :generate_excursion_html_files do
+    require './app/app'
+    activity_store = ActivityStore.new('peak-hills')
+    excursion_store = ExcursionStore.new('data/excursions.json', activity_store)
+
+    excursion_store.get_all.each do |excursion|
+      ExcursionPage.new('source/excursions').generate(excursion)
+    end
+  end
+
+  task :generate_excursion_activity_json_files do
+    require './app/app'
+    activity_store = ActivityStore.new('peak-hills')
+    excursion_store = ExcursionStore.new('data/excursions.json', activity_store)
+
+    excursion_store.get_all.each do |excursion|
+      features_collection = {
+        type: 'FeatureCollection',
+        features: []
+      }
+      excursion.activities.each do |activity|
+        feature = {
+          type: 'Feature',
+          properties: {
+            name: activity.name,
+            link: "http://strava.com/activities/#{activity.id}",
+          },
+          geometry: {
+            type: 'LineString',
+            coordinates: activity.course.route.coordinates.map { |p| [p[1], p[0]] }
+          }
+        }
+        features_collection[:features] << feature
+      end
+
+      FileUtils.mkdir_p "source/excursions"
+      File.open("source/excursions/#{excursion.id}.json","w") do |f|
+        f.write(JSON.pretty_generate(features_collection))
+      end
+    end
+
+    Dir.chdir(File.join(File.dirname(__FILE__), 'source', 'excursions'))
+
+    Dir.glob('*.json').each do |filename|
+      basename = File.basename(filename, '.json')
+      `ogr2ogr -f GeoJSON simple-#{basename}.json #{basename}.json -simplify 0.0001`
+    end
+
+  end
 end
 
 namespace :strava do

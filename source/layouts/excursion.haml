@@ -1,0 +1,27 @@
+- content_for :head do
+  = stylesheet_link_tag :leaflet
+  = javascript_include_tag :leaflet
+  = javascript_include_tag 'leaflet.ajax'
+  = javascript_include_tag 'map'
+  = javascript_include_tag 'line_options'
+  = javascript_include_tag 'clone_layer'
+  :javascript
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var mapManager = new window.MapManager("map");
+      mapManager.bootstrap();
+
+      excursionURL = "/excursions/simple-#{ current_page.data.excursion_id }.json";
+      var excursion = new L.GeoJSON.AJAX(excursionURL, { style: line_options() });
+
+      excursion.on('data:loaded', function() {
+        mapManager.map.fitBounds(excursion.getBounds());
+        cloneAndStrokeLayer(excursion, mapManager.map);
+        excursion.addTo(mapManager.map).bringToFront();
+      }.bind(this));
+    });
+
+= wrap_layout :layout do
+  #map
+  %h1= current_page.data.name
+  = yield
+

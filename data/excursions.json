@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "The Way of The Roses",
+    "activities": [
+      691164953,
+      692571453,
+      693200525
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Festive 500",
+    "activities": [
+      810420157,
+      811855656,
+      812902276,
+      815772041,
+      816395711,
+      816769278,
+      816887596
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Up Pen Y Fan",
+    "activities": [
+      280579013
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Urban Safari",
+    "activities": [
+      1
+    ]
+  }
+]

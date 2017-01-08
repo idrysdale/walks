@@ -13,9 +13,10 @@
 # Ignore the scraped wikipedia hills
 /data/hills.json
 
-# Ignore the generated hills
+# Ignore the generated pages
 /source/hills/**
 /source/activities/**
+/source/excursions/**
 
 # Ignore the Middleman build
 /build

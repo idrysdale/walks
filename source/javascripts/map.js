@@ -1,7 +1,5 @@
-window.MapManager = function (id, summit) {
+window.MapManager = function (id) {
   this.id = id;
-  this.routes = [];
-  this.summit = summit;
 };
 
 window.MapManager.prototype.bootstrap = function () {
@@ -17,6 +15,8 @@ window.MapManager.prototype.addRoute = function (route, fitBounds) {
   route.display(this.map, fitBounds);
 };
 
-window.MapManager.prototype.centreOnSummit = function (summit) {
+window.MapManager.prototype.centreOn = function (summit) {
   this.map.setView(new L.LatLng(summit[1], summit[0]), 14)
 }
+
+
