@@ -133,16 +133,18 @@ namespace :site do
       end
 
       FileUtils.mkdir_p "source/excursions"
-      File.open("source/excursions/#{excursion.id}.json","w") do |f|
+
+      File.open("source/excursions/#{excursion.name.friendly_filename}.json","w") do |f|
         f.write(JSON.pretty_generate(features_collection))
       end
     end
 
-    Dir.chdir(File.join(File.dirname(__FILE__), 'source', 'excursions'))
+    FileUtils.mkdir_p "source/excursions/simplified"
 
+    Dir.chdir(File.join(File.dirname(__FILE__), 'source', 'excursions'))
     Dir.glob('*.json').each do |filename|
       basename = File.basename(filename, '.json')
-      `ogr2ogr -f GeoJSON simple-#{basename}.json #{basename}.json -simplify 0.0001`
+      `ogr2ogr -f GeoJSON simplified/#{basename}.json #{basename}.json -simplify 0.0001`
     end
 
   end

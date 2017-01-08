@@ -10,7 +10,7 @@
       var mapManager = new window.MapManager("map");
       mapManager.bootstrap();
 
-      excursionURL = "/excursions/simple-#{ current_page.data.excursion_id }.json";
+      excursionURL = "/excursions/simplified/#{ current_page.data.excursion_id }.json";
       var excursion = new L.GeoJSON.AJAX(excursionURL, { style: line_options() });
 
       excursion.on('data:loaded', function() {
