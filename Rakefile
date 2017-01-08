@@ -96,6 +96,17 @@ namespace :site do
     end
   end
 
+  desc 'Generate the excursion HTML files'
+  task :generate_excursion_html_files do
+    require './app/app'
+    activity_store = ActivityStore.new('peak-hills')
+    excursion_store = ExcursionStore.new('data/excursions.json', activity_store)
+
+    excursion_store.get_all.each do |excursion|
+      ExcursionPage.new('source/excursions').generate(excursion)
+    end
+  end
+
   task :generate_excursion_activity_pages do
     require './app/app'
     activity_store = ActivityStore.new('peak-hills')
