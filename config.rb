@@ -1,6 +1,23 @@
 require './app/app'
 
 helpers do
+  def generate_gallery(directory:, image_filenames:)
+    r = "<div class='gallery'>"
+    image_filenames.each do |image_filename|
+      r += "<div class='image'>"
+      r += "<a href='/images/photos/#{directory}/#{image_filename}.jpg' "
+      ExcursionPage.photo_widths.each do |width|
+        r += "data-at-#{width}='/images/photos/#{directory}/thumbs/#{image_filename}-#{width}.jpg' "
+      end
+      r += ">"
+      r += "<img src='/images/photos/#{directory}/thumbs/#{image_filename}-#{ExcursionPage.photo_widths.min}.jpg' width='100%' />"
+      r += "</a>"
+      r += "</div>"
+    end
+    r += "</div>"
+    return r
+  end
+
   def hills_climbed_in_the_peaks
     factory = RGeo::Geos.factory
     peak_district_file = File.read('data/peak-district.json')
