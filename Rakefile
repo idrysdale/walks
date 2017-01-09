@@ -103,7 +103,7 @@ namespace :site do
     excursion_store = ExcursionStore.new('data/excursions.json', activity_store)
 
     excursion_store.get_all.each do |excursion|
-      ExcursionPage.new('source/excursions').generate(excursion)
+      ExcursionPage.new('source/excursions', excursion).generate()
     end
   end
 
