@@ -6,6 +6,25 @@ require 'logger'
 require 'open-uri'
 require 'yaml'
 
+namespace :images do
+  task :generate_thumbs do
+    require './app/app'
+    Dir.entries('source/images/photos').select { |entry|
+      File.directory? File.join('source/images/photos',entry) and !(entry =='.' || entry == '..')
+    }.each do |directoy|
+      Dir.chdir(File.join(File.dirname(__FILE__), 'source', 'images', 'photos', directoy))
+      FileUtils.mkdir_p 'thumbs'
+      Dir.glob('*.jpg').each do |filename|
+        basename = File.basename(filename, '.jpg')
+        puts "🖌  Generating thumbnails for #{basename}"
+        ExcursionPage.photo_widths.each do |width|
+          `convert #{basename}.jpg -resize #{width} thumbs/#{basename}-#{width}.jpg`
+        end
+      end
+    end
+  end
+end
+
 namespace :wikipedia do
   desc "Get the hills from Wikipedia"
   task :scrape do

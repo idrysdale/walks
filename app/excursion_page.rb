@@ -1,5 +1,9 @@
 class ExcursionPage
 
+  def self.photo_widths
+    [475, 800, 1366, 1920]
+  end
+
   def initialize(file_directory, excursion)
     @file_directory = file_directory
     @excursion = excursion
