@@ -26,6 +26,11 @@
     "name": "Up Pen Y Fan",
     "activities": [
       280579013
+    ],
+    "photo_filenames": [
+      "group_on_hill",
+      "tom_ali_car",
+      "smiley_darrel"
     ]
   },
   {
@@ -33,6 +38,20 @@
     "name": "Urban Safari",
     "activities": [
       1
+    ],
+    "photo_filenames": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12"
     ]
   },
   {
