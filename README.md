@@ -67,4 +67,3 @@ make install
 ## To-do
 
 - Add a way to write up activity descriptions such that generating the activity pages doesn't trash the content.
-- Move `hill` into `HillPage.initialize`, like `ExcursionPage`

@@ -78,7 +78,7 @@ namespace :site do
     activities_hills_store = ActivitiesHillsStore.new('peak-hills')
 
     activities_hills_store.get_hills_climbed.each do |hill|
-      HillPage.new('source/hills').generate(hill)
+      HillPage.new('source/hills', hill).generate()
     end
   end
 
