@@ -11,7 +11,9 @@ RSpec.describe ExcursionPage do
     )
   }
   let(:temporary_file_directory) { 'tmp/excursions_pages' }
-  subject(:excursion_page) { ExcursionPage.new(temporary_file_directory) }
+  subject(:excursion_page) {
+    ExcursionPage.new(temporary_file_directory, excursion)
+  }
   let(:file_path) { Dir.glob("#{temporary_file_directory}/*").first }
 
   before do
@@ -21,7 +23,7 @@ RSpec.describe ExcursionPage do
 
   describe '#generate' do
     before do
-      excursion_page.generate(excursion)
+      excursion_page.generate()
     end
 
     it 'writes a haml file' do

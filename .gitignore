@@ -18,6 +18,9 @@
 /source/activities/**
 /source/excursions/**
 
+# Ignore any thumbnails generated
+thumbs/
+
 # Ignore the Middleman build
 /build
 
