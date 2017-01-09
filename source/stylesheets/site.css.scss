@@ -130,3 +130,16 @@ img.contour {
   height: $base-line-height * 14;
   margin-bottom: $base-line-height * 0.5;
 }
+
+.gallery {
+  width: 100%;
+  .image {
+    height: $base-line-height * 9;
+    margin-bottom: $base-line-height * 0.5;
+    overflow: hidden;
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+}
