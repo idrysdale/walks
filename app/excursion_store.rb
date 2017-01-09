@@ -13,7 +13,8 @@ class ExcursionStore
         row['name'],
         row['activities'].map { |activity_id|
           @activity_store.get(activity_id)
-        }
+        },
+        row['photo_filenames']
       )
     }
   end
