@@ -111,7 +111,7 @@ namespace :site do
         f.write(JSON.pretty_generate(activity_json))
       end
 
-      ActivityPage.new('source/activities').generate(activity)
+      ActivityPage.new('source/activities', activity).generate()
     end
   end
 
