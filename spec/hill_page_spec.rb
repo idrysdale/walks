@@ -15,7 +15,7 @@ RSpec.describe HillPage do
     )
   }
   let(:temporary_file_directory) { 'tmp/hill_pages' }
-  subject(:hill_page) { HillPage.new(temporary_file_directory) }
+  subject(:hill_page) { HillPage.new(temporary_file_directory, hill) }
   let(:file_path) { Dir.glob("#{temporary_file_directory}/*").first }
 
   before do
@@ -24,7 +24,7 @@ RSpec.describe HillPage do
 
   describe '#generate' do
     before do
-      hill_page.generate(hill)
+      hill_page.generate()
     end
 
     it 'writes a haml file' do
